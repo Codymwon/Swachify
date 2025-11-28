@@ -1,34 +1,31 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   Shield, Clock, Star, Users,
   Calendar, Truck, Coffee,
   MapPin, CheckCircle2, ArrowRight,
-  Facebook, Twitter, Instagram, Linkedin,
-  Menu, X, Phone, Mail,
-  HelpCircle, Leaf, Wrench, Settings, MessageSquare, MessageCircle
+  HelpCircle, Leaf, Wrench, Settings, MessageSquare
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import maleMascot from "@assets/generated_images/friendly_male_cleaner_mascot_cartoon.webp";
 import femaleMascot from "@assets/generated_images/friendly_female_cleaner_mascot_cartoon.webp";
-import groupMascot from "@assets/generated_images/cleaning_mascots_group_illustration.png";
-import swachifyLogo from "@assets/Swachify_logo.png";
 
 // --- Static Data (Moved outside components for performance) ---
 
-const SERVICE_CATEGORIES = ["Residential", "Commercial", "Car Wash", "Garden"];
+type ServiceCategory = "Residential" | "Commercial" | "Car Wash" | "Garden";
 
-const SERVICE_DATA = {
+const SERVICE_CATEGORIES: ServiceCategory[] = ["Residential", "Commercial", "Car Wash", "Garden"];
+
+type ServiceData = Record<ServiceCategory, {
+  title: string;
+  description: string;
+  services: string[];
+}>;
+
+const SERVICE_DATA: ServiceData = {
   "Residential": {
     title: "Residential Cleaning",
     description: "Keep your home spotless with tailored cleaning options—from regular upkeep to deep cleaning. We cover kitchens, bathrooms, bedrooms, living areas, and more, ensuring every corner shines with care and precision.",
@@ -245,7 +242,7 @@ const Hero = () => {
 };
 
 const ServicesPreview = () => {
-  const [activeCategory, setActiveCategory] = useState("Residential");
+  const [activeCategory, setActiveCategory] = useState<ServiceCategory>("Residential");
   const currentService = SERVICE_DATA[activeCategory];
 
   return (
