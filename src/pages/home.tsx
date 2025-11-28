@@ -4,7 +4,8 @@ import {
   Calendar, Truck, Coffee,
   MapPin, CheckCircle2, ArrowRight,
   Facebook, Twitter, Instagram, Linkedin,
-  Menu, X, Phone, Mail
+  Menu, X, Phone, Mail,
+  HelpCircle, Leaf, Wrench, Settings, MessageSquare
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -195,7 +196,12 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-20 ">
         <div className="text-center max-w-4xl mx-auto mb-8 md:mb-12 mt-4 md:mt-20 ">
-          <h1 className="text-3xl md:text-[75px] font-bold text-navy mb-2 md:mb-4 tracking-tight">
+          <motion.h1
+            className="text-3xl md:text-[75px] font-bold text-navy mb-2 md:mb-4 tracking-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <motion.span
               className="text-primary italic relative inline-block"
               whileHover="hover"
@@ -276,16 +282,32 @@ const Hero = () => {
               </motion.span>
               SWACHIFY
             </motion.span> YOUR SPACE
-          </h1>
-          <h2 className="text-1xl md:text-[60px] font-bold text-navy/90 mb-4 md:mb-8">
+          </motion.h1>
+          <motion.h2
+            className="text-1xl md:text-[60px] font-bold text-navy/90 mb-4 md:mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
             LEAVE THE CLEANING TO US
-          </h2>
-          <p className="text-sm md:text-lg text-gray-600 mb-4 md:mb-8 max-w-xl mx-auto">
+          </motion.h2>
+          <motion.p
+            className="text-sm md:text-lg text-gray-600 mb-4 md:mb-8 max-w-xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          >
             Experience our reliable and thorough cleaning services today.
-          </p>
-          <Button className="bg-destructive hover:bg-destructive/90 text-white px-4 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95">
-            Book Now
-          </Button>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          >
+            <Button className="bg-destructive hover:bg-destructive/90 text-white px-4 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95">
+              Book Now
+            </Button>
+          </motion.div>
         </div>
       </div>
 
@@ -641,8 +663,24 @@ const PricingTeaser = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-end mb-12">
           <div>
-            <h2 className="text-3xl font-bold text-navy">Popular Packages</h2>
-            <p className="text-gray-500 mt-2">Transparent pricing for every need.</p>
+            <motion.h2
+              className="text-3xl font-bold text-navy"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Popular Packages
+            </motion.h2>
+            <motion.p
+              className="text-gray-500 mt-2"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              Transparent pricing for every need.
+            </motion.p>
           </div>
           <Button variant="outline" className="hidden md:flex border-primary text-primary hover:bg-primary/5">
             View Full Pricing
@@ -655,19 +693,27 @@ const PricingTeaser = () => {
             { title: "Deep Clean", price: "From ₹1499", desc: "Intensive cleaning for every corner and crevice." },
             { title: "Move-In/Out", price: "From ₹2999", desc: "Complete sanitization for your new beginning." }
           ].map((plan, i) => (
-            <Card key={i} className="border-none shadow-sm hover:shadow-md transition-all">
-              <CardContent className="p-6">
-                <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                  <Star className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-primary mb-1">{plan.title}</h3>
-                <p className="text-2xl font-bold text-navy mb-3">{plan.price}</p>
-                <p className="text-gray-500 text-sm mb-4">{plan.desc}</p>
-                <Button variant="link" className="text-primary p-0 h-auto font-semibold">
-                  Check details <ArrowRight className="w-4 h-4 ml-1" />
-                </Button>
-              </CardContent>
-            </Card>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+            >
+              <Card className="border-none shadow-sm hover:shadow-md transition-all h-full">
+                <CardContent className="p-6">
+                  <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                    <Star className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-primary mb-1">{plan.title}</h3>
+                  <p className="text-2xl font-bold text-navy mb-3">{plan.price}</p>
+                  <p className="text-gray-500 text-sm mb-4">{plan.desc}</p>
+                  <Button variant="link" className="text-primary p-0 h-auto font-semibold">
+                    Check details <ArrowRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
 
@@ -686,33 +732,180 @@ const FinalCTA = () => {
     <section className="py-24 bg-gradient-to-b from-blue-50/30 to-white relative overflow-hidden">
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* Areas We Serve - Integrated */}
-        <div className="mb-16">
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h3 className="text-2xl md:text-3xl font-bold text-navy mb-8">
             Serving Across <span className="text-primary">Kerala</span>
           </h3>
           <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
             {LOCATIONS.map((loc, i) => (
-              <div key={i} className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-full px-5 py-2 flex items-center gap-2 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 border border-blue-200">
+              <motion.div
+                key={i}
+                className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-full px-5 py-2 flex items-center gap-2 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 border border-blue-200"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05, duration: 0.3 }}
+              >
                 <MapPin className="w-4 h-4 text-primary" />
                 <span className="text-navy font-semibold text-sm">{loc}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Main CTA */}
-        <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6">Ready to Swachify Your Space?</h2>
-        <p className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto">
-          Join thousands of happy customers and experience the joy of a truly clean home.
-        </p>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6">Ready to Swachify Your Space?</h2>
+          <p className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto">
+            Join thousands of happy customers and experience the joy of a truly clean home.
+          </p>
+        </motion.div>
 
         <div className="flex flex-col items-center">
-          <Button size="lg" className="bg-destructive hover:bg-destructive/90 text-white px-12 py-8 text-xl rounded-full shadow-xl hover:shadow-2xl transition-all hover:scale-105 mb-12">
-            Book Your Cleaning
-          </Button>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Button size="lg" className="bg-destructive hover:bg-destructive/90 text-white px-8 py-6 text-lg rounded-full shadow-xl hover:shadow-2xl transition-all hover:scale-105 w-full sm:w-auto sm:min-w-[200px]">
+              Book Your Cleaning
+            </Button>
+            <Button size="lg" variant="outline" className="border-2 border-navy text-navy hover:bg-navy hover:text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 w-full sm:w-auto sm:min-w-[200px]">
+              Contact Us
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-          <div className="max-w-md mx-auto">
-            <img src={groupMascot} alt="Swachify Team" className="w-full opacity-90 hover:opacity-100 transition-opacity" />
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      icon: <Shield className="w-5 h-5 text-primary" />,
+      question: "What is Swachify?",
+      answer: "Swachify is a premium cleaning service provider in Kerala, dedicated to transforming your living spaces with professional, reliable, and eco-friendly cleaning solutions."
+    },
+    {
+      icon: <Clock className="w-5 h-5 text-primary" />,
+      question: "How long does cleaning take?",
+      answer: "Cleaning duration depends on the size of your space and the type of service selected. We'll give you an estimated time after reviewing your requirements."
+    },
+    {
+      icon: <Leaf className="w-5 h-5 text-primary" />,
+      question: "Are your cleaning products safe?",
+      answer: "Yes. We use eco-friendly, non-toxic cleaning solutions that are safe for children, pets, and all surfaces."
+    },
+    {
+      icon: <Wrench className="w-5 h-5 text-primary" />,
+      question: "Do you provide equipment?",
+      answer: "Absolutely. Our team arrives fully equipped with all professional cleaning tools and supplies."
+    },
+    {
+      icon: <Settings className="w-5 h-5 text-primary" />,
+      question: "Can I customize my cleaning service?",
+      answer: "Yes! We offer tailored cleaning plans so you can choose exactly what you need—whether it's deep cleaning, regular cleaning, or specific add-ons."
+    },
+    {
+      icon: <MessageSquare className="w-5 h-5 text-primary" />,
+      question: "How do I book a cleaning?",
+      answer: "You can book easily through our website, WhatsApp, or by calling us directly."
+    },
+    {
+      icon: <MapPin className="w-5 h-5 text-primary" />,
+      question: "What areas do you serve?",
+      answer: "We currently serve customers across Kannur district, including Taliparamba, Payyanur, Kannur town, and nearby regions."
+    }
+  ];
+
+  return (
+    <section id="faq" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="bg-gray-50 rounded-[2.5rem] p-8 md:p-16">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+              Frequently Asked <span className="text-primary">Questions</span>
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Got questions? We've got answers. Find everything you need to know about our services.
+            </p>
+          </motion.div>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <div
+                  className={`bg-white border-2 rounded-2xl overflow-hidden transition-all duration-300 ${openIndex === index
+                    ? 'border-primary shadow-lg'
+                    : 'border-transparent hover:border-primary/50'
+                    }`}
+                >
+                  <button
+                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                    className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-blue-50/50 transition-colors"
+                  >
+                    <div className="flex items-center gap-4 flex-1">
+                      <div className="flex-shrink-0">
+                        {faq.icon}
+                      </div>
+                      <h3 className="text-lg font-bold text-navy">
+                        {faq.question}
+                      </h3>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: openIndex === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <HelpCircle className="w-5 h-5 text-primary" />
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-5 pt-2 pl-16 text-gray-600 leading-relaxed">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
@@ -723,7 +916,13 @@ const FinalCTA = () => {
 const Footer = () => {
   return (
     <footer className="bg-navy text-white pt-20 pb-10 border-t border-white/10 will-change-transform transform-gpu">
-      <div className="container mx-auto px-4">
+      <motion.div
+        className="container mx-auto px-4"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div>
             <h3 className="text-2xl font-bold text-primary mb-6">Swachify</h3>
@@ -787,7 +986,7 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-8 text-center text-gray-500 text-sm">
           <p>&copy; {new Date().getFullYear()} Swachify. All rights reserved.</p>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 };
@@ -802,6 +1001,7 @@ export default function Home() {
       <PricingTeaser />
       <WhyChooseUs />
       <FinalCTA />
+      <FAQ />
       <Footer />
     </div>
   );
