@@ -85,7 +85,8 @@ const LOCATIONS = [
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const lastScrollY = useRef(0); // Optimization: Use ref to track scroll position
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,6 +97,7 @@ const Navbar = () => {
       } else if (currentScrollY > lastScrollY.current) {
         // Scrolling down
         setIsVisible(false);
+        setIsMobileMenuOpen(false); // Close menu on scroll down
       } else {
         // Scrolling up
         setIsVisible(true);
@@ -106,11 +108,18 @@ const Navbar = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []); // Optimization: Empty dependency array means listener attaches once
+  }, []);
+
+  const navLinks = [
+    { name: "Why us", href: "#why-us" },
+    { name: "Services", href: "#services" },
+    { name: "How it works", href: "#how-it-works" },
+    { name: "FAQs", href: "#faq" },
+  ];
 
   return (
     <motion.nav
-      className="fixed top-8 left-0 right-0 z-50 flex justify-center px-4"
+      className="fixed top-4 md:top-8 left-0 right-0 z-50 flex justify-center px-4"
       initial={{ y: 0, opacity: 1 }}
       animate={{
         y: isVisible ? 0 : -100,
@@ -118,14 +127,59 @@ const Navbar = () => {
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-      <div className="bg-white/95 backdrop-blur-md shadow-lg rounded-full px-12 py-3 flex items-center justify-between w-full max-w-2xl border border-gray-100">
-        <a href="#why-us" className="text-lg font-medium text-navy hover:text-primary transition-colors">Why us</a>
-        <a href="#services" className="text-lg font-medium text-navy hover:text-primary transition-colors">Services</a>
-        <a href="#" className="flex items-center">
-          <img src={swachifyLogo} alt="Swachify" className="h-10" />
-        </a>
-        <a href="#how-it-works" className="text-lg font-medium text-navy hover:text-primary transition-colors">How it works</a>
-        <a href="#faq" className="text-lg font-medium text-navy hover:text-primary transition-colors">FAQs</a>
+      <div className="relative w-full max-w-2xl">
+        <div className="bg-white/95 backdrop-blur-md shadow-lg rounded-full px-6 md:px-12 py-3 flex items-center justify-between border border-gray-100 relative z-50">
+          {/* Desktop Links (Left) */}
+          <div className="hidden md:flex gap-8">
+            <a href="#why-us" className="text-lg font-medium text-navy hover:text-primary transition-colors">Why us</a>
+            <a href="#services" className="text-lg font-medium text-navy hover:text-primary transition-colors">Services</a>
+          </div>
+
+          {/* Logo (Center on Desktop, Left on Mobile) */}
+          <a href="#" className="flex items-center">
+            <img src={swachifyLogo} alt="Swachify" className="h-8 md:h-10" />
+          </a>
+
+          {/* Desktop Links (Right) */}
+          <div className="hidden md:flex gap-8">
+            <a href="#how-it-works" className="text-lg font-medium text-navy hover:text-primary transition-colors">How it works</a>
+            <a href="#faq" className="text-lg font-medium text-navy hover:text-primary transition-colors">FAQs</a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-navy p-1"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full left-0 right-0 mt-2 bg-white/95 backdrop-blur-md shadow-xl rounded-3xl border border-gray-100 overflow-hidden md:hidden"
+            >
+              <div className="flex flex-col p-4 gap-2">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-lg font-medium text-navy hover:text-primary hover:bg-gray-50 px-4 py-3 rounded-xl transition-colors text-center"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );
@@ -133,15 +187,15 @@ const Navbar = () => {
 
 const Hero = () => {
   return (
-    <section className="relative pt-36 pb-0 overflow-hidden bg-white">
+    <section className="relative pt-24 pb-0 md:pt-24 md:pb-0 overflow-hidden bg-white">
       {/* Grid Background Pattern */}
       <div className="absolute inset-0 z-0 opacity-[0.03]"
         style={{ backgroundImage: 'linear-gradient(#000 2px, transparent 1px), linear-gradient(90deg, #000 2px, transparent 1px)', backgroundSize: '20px 20px' }}>
       </div>
 
       <div className="container mx-auto px-4 relative z-20 ">
-        <div className="text-center max-w-4xl mx-auto mb-12 mt-20 ">
-          <h1 className="text-5xl md:text-[75px] font-bold text-navy mb-4 tracking-tight">
+        <div className="text-center max-w-4xl mx-auto mb-8 md:mb-12 mt-4 md:mt-20 ">
+          <h1 className="text-4xl md:text-[75px] font-bold text-navy mb-2 md:mb-4 tracking-tight">
             <motion.span
               className="text-primary italic relative inline-block"
               whileHover="hover"
@@ -223,35 +277,35 @@ const Hero = () => {
               SWACHIFY
             </motion.span> YOUR SPACE
           </h1>
-          <h2 className="text-4xl md:text-[60px] font-bold text-navy/90 mb-8">
+          <h2 className="text-lg md:text-[60px] font-bold text-navy/90 mb-6 md:mb-8">
             LEAVE THE CLEANING TO US
           </h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 max-w-xl mx-auto">
             Experience our reliable and thorough cleaning services today.
           </p>
-          <Button size="lg" className="bg-destructive hover:bg-destructive/90 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95">
+          <Button className="bg-destructive hover:bg-destructive/90 text-white px-6 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95">
             Book Now
           </Button>
         </div>
       </div>
 
-      <div className="flex justify-between items-end w-full px-4 md:px-12 -mt-44 relative z-10">
+      <div className="flex justify-between items-end w-full px-2 md:px-12 -mt-16 md:-mt-44 relative z-10 pointer-events-none">
         <motion.div
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="hidden md:block w-1/3"
+          className="w-5/12 md:w-1/3"
         >
-          <img src={maleMascot} alt="Cleaner" className="w-full max-w-[350px] mr-auto drop-shadow-2xl" />
+          <img src={maleMascot} alt="Cleaner" className="w-full max-w-[140px] md:max-w-[350px] mr-auto drop-shadow-2xl" />
         </motion.div>
 
         <motion.div
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="hidden md:block w-1/3"
+          className="w-5/12 md:w-1/3"
         >
-          <img src={femaleMascot} alt="Cleaner" className="w-full max-w-[350px] ml-auto drop-shadow-2xl" />
+          <img src={femaleMascot} alt="Cleaner" className="w-full max-w-[140px] md:max-w-[350px] ml-auto drop-shadow-2xl" />
         </motion.div>
       </div>
     </section>
