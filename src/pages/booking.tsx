@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
+import { db } from "../firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useToast } from "@/hooks/use-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Check, Calendar, MapPin, User, Phone, Mail, Home, Building2, Car, Trees } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -60,6 +64,9 @@ interface BookingData {
 }
 
 export default function Booking() {
+    const { toast } = useToast();
+    const [loading, setLoading] = useState(false);
+    const [, setLocation] = useLocation();
     const [currentStep, setCurrentStep] = useState(1);
     const [showSuccess, setShowSuccess] = useState(false);
     const [formData, setFormData] = useState<BookingData>({
@@ -94,10 +101,26 @@ export default function Booking() {
         }
     };
 
-    const handleSubmit = () => {
-        // Here you would typically send the data to your backend
-        console.log("Booking submitted:", formData);
-        setShowSuccess(true);
+    const handleSubmit = async () => {
+        setLoading(true);
+        try {
+            await addDoc(collection(db, "bookings"), {
+                ...formData,
+                createdAt: serverTimestamp(),
+                status: "pending" // Initial status
+            });
+
+            setShowSuccess(true);
+        } catch (error) {
+            console.error("Error adding booking: ", error);
+            toast({
+                title: "Booking Failed",
+                description: "Something went wrong. Please try again.",
+                variant: "destructive"
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     const isStepValid = () => {
@@ -480,10 +503,10 @@ export default function Booking() {
                             ) : (
                                 <Button
                                     onClick={handleSubmit}
-                                    disabled={!isStepValid()}
+                                    disabled={!isStepValid() || loading}
                                     className="px-8 bg-primary hover:bg-primary/90"
                                 >
-                                    Submit Booking
+                                    {loading ? "Submitting..." : "Submit Booking"}
                                 </Button>
                             )}
                         </div>

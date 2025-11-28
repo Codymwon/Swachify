@@ -7,8 +7,66 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from "react";
+import { db } from "../firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+    const { toast } = useToast();
+    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: ""
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    };
+
+    const handleSelectChange = (value: string) => {
+        setFormData({ ...formData, service: value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            await addDoc(collection(db, "contacts"), {
+                ...formData,
+                createdAt: serverTimestamp()
+            });
+
+            toast({
+                title: "Message Sent!",
+                description: "We'll get back to you shortly.",
+            });
+
+            setFormData({
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: "",
+                service: "",
+                message: ""
+            });
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            toast({
+                title: "Error",
+                description: "Something went wrong. Please try again.",
+                variant: "destructive"
+            });
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-white font-sans text-navy selection:bg-primary/20">
             <Navbar />
@@ -102,31 +160,31 @@ const Contact = () => {
                             className="bg-white p-8 md:p-10 rounded-3xl shadow-lg border border-gray-100"
                         >
                             <h2 className="text-2xl font-bold text-navy mb-6">Send us a Message</h2>
-                            <form className="space-y-6">
+                            <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <Label htmlFor="firstName">First name</Label>
-                                        <Input id="firstName" placeholder="John" />
+                                        <Input id="firstName" value={formData.firstName} onChange={handleChange} placeholder="John" required />
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="lastName">Last name</Label>
-                                        <Input id="lastName" placeholder="Doe" />
+                                        <Input id="lastName" value={formData.lastName} onChange={handleChange} placeholder="Doe" required />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
                                     <Label htmlFor="email">Email</Label>
-                                    <Input id="email" type="email" placeholder="john@example.com" />
+                                    <Input id="email" type="email" value={formData.email} onChange={handleChange} placeholder="john@example.com" required />
                                 </div>
 
                                 <div className="space-y-2">
                                     <Label htmlFor="phone">Phone number</Label>
-                                    <Input id="phone" type="tel" placeholder="+91 99999 99999" />
+                                    <Input id="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="+91 99999 99999" required />
                                 </div>
 
                                 <div className="space-y-2">
                                     <Label htmlFor="service">Service Interested In</Label>
-                                    <Select>
+                                    <Select onValueChange={handleSelectChange} value={formData.service}>
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select a service" />
                                         </SelectTrigger>
@@ -142,11 +200,11 @@ const Contact = () => {
 
                                 <div className="space-y-2">
                                     <Label htmlFor="message">Message</Label>
-                                    <Textarea id="message" placeholder="Tell us about your cleaning needs..." className="min-h-[120px]" />
+                                    <Textarea id="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your cleaning needs..." className="min-h-[120px]" required />
                                 </div>
 
-                                <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white py-6 text-lg rounded-xl">
-                                    Send Message <Send className="w-4 h-4 ml-2" />
+                                <Button type="submit" disabled={loading} className="w-full bg-primary hover:bg-primary/90 text-white py-6 text-lg rounded-xl">
+                                    {loading ? "Sending..." : "Send Message"} <Send className="w-4 h-4 ml-2" />
                                 </Button>
                             </form>
                         </motion.div>
