@@ -204,7 +204,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           >
-            <Button className="bg-destructive hover:bg-destructive/90 text-white px-6 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95 w-full sm:w-auto">
+            <Button onClick={() => window.location.href = '/booking'} className="bg-destructive hover:bg-destructive/90 text-white px-6 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95 w-full sm:w-auto">
               Book Now
             </Button>
             <Button
@@ -687,7 +687,7 @@ const FinalCTA = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Button size="lg" className="bg-destructive hover:bg-destructive/90 text-white px-8 py-6 text-lg rounded-full shadow-xl hover:shadow-2xl transition-all hover:scale-105 w-full sm:w-auto sm:min-w-[200px]">
+            <Button onClick={() => window.location.href = '/booking'} size="lg" className="bg-destructive hover:bg-destructive/90 text-white px-8 py-6 text-lg rounded-full shadow-xl hover:shadow-2xl transition-all hover:scale-105 w-full sm:w-auto sm:min-w-[200px]">
               Book Your Cleaning
             </Button>
             <Button size="lg" variant="outline" className="border-2 border-navy text-navy hover:bg-navy hover:text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 w-full sm:w-auto sm:min-w-[200px]">
