@@ -202,12 +202,20 @@ const Hero = () => {
             Experience our reliable and thorough cleaning services today.
           </motion.p>
           <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           >
-            <Button className="bg-destructive hover:bg-destructive/90 text-white px-4 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95">
+            <Button className="bg-destructive hover:bg-destructive/90 text-white px-4 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95 w-full sm:w-auto">
               Book Now
+            </Button>
+            <Button
+              onClick={() => window.location.href = '/contact'}
+              variant="outline"
+              className="border-2 border-navy text-navy hover:bg-navy hover:text-white px-4 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95 w-full sm:w-auto"
+            >
+              Contact Us
             </Button>
           </motion.div>
         </div>
