@@ -13,7 +13,7 @@ const Footer = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
             >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-16 items-start">
                     <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
                         <img src={swachifyLogo} alt="Swachify" className="h-12 mb-6" />
                         <p className="text-gray-400 text-sm leading-relaxed mb-6">

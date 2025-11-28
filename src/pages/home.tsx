@@ -456,7 +456,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-white overflow-hidden relative">
+    <section id="how-it-works" className="py-20 bg-white overflow-hidden relative">
       {/* Decorative background elements */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-destructive/5 rounded-full blur-3xl" />
@@ -639,7 +639,7 @@ const PricingTeaser = () => {
 
 const FinalCTA = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-blue-50/30 to-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-blue-50/30 to-white relative overflow-hidden">
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* Areas We Serve - Integrated */}
         <motion.div
