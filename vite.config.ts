@@ -12,34 +12,39 @@ export default defineConfig({
     tailwindcss(),
     metaImagesPlugin(),
     ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
+      process.env.REPL_ID !== undefined
       ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-          await import("@replit/vite-plugin-dev-banner").then((m) =>
-            m.devBanner(),
-          ),
-        ]
+        await import("@replit/vite-plugin-cartographer").then((m) =>
+          m.cartographer()
+        ),
+        await import("@replit/vite-plugin-dev-banner").then((m) =>
+          m.devBanner()
+        ),
+      ]
       : []),
   ],
+
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
+      "@": path.resolve(import.meta.dirname, "src"),
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
+
   css: {
     postcss: {
       plugins: [],
     },
   },
-  root: path.resolve(import.meta.dirname, "client"),
+
+  // IMPORTANT FIXES BELOW
+  root: path.resolve(import.meta.dirname),        // ← root of project
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: path.resolve(import.meta.dirname, "dist"), // ← Vercel expects /dist
     emptyOutDir: true,
   },
+
   server: {
     host: "0.0.0.0",
     allowedHosts: true,
