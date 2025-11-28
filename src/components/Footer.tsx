@@ -40,9 +40,7 @@ const Footer = () => {
                             <li><Link href="/" className="text-gray-400 hover:text-primary transition-colors">Home</Link></li>
                             <li><Link href="/about" className="text-gray-400 hover:text-primary transition-colors">About Us</Link></li>
                             <li><a href="/#services" className="text-gray-400 hover:text-primary transition-colors">Services</a></li>
-                            <li><a href="/#how-it-works" className="text-gray-400 hover:text-primary transition-colors">How It Works</a></li>
                             <li><a href="/#faq" className="text-gray-400 hover:text-primary transition-colors">FAQs</a></li>
-                            <li><Link href="/contact" className="text-gray-400 hover:text-primary transition-colors">Contact Us</Link></li>
                         </ul>
                     </div>
 
@@ -71,6 +69,13 @@ const Footer = () => {
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                                 <a href="mailto:hello@swachify.com" className="text-gray-400 hover:text-primary transition-colors">hello@swachify.com</a>
+                            </li>
+                            <li className="pt-4">
+                                <Link href="/contact">
+                                    <button className="bg-primary hover:bg-primary/90 text-white font-medium py-2 px-6 rounded-full transition-colors w-full sm:w-auto">
+                                        Contact Us
+                                    </button>
+                                </Link>
                             </li>
                         </ul>
                     </div>

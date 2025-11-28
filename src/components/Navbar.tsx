@@ -54,8 +54,8 @@ const Navbar = () => {
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-            <div className="relative w-full max-w-3xl">
-                <div className="bg-white/95 backdrop-blur-md shadow-lg rounded-full px-6 md:px-12 py-3 flex items-center justify-between border border-gray-100 relative z-50">
+            <div className="relative w-full max-w-2xl">
+                <div className="bg-white/95 backdrop-blur-md shadow-lg rounded-full px-6 md:px-12 py-3 flex items-center justify-between md:justify-center md:gap-6 border border-gray-100 relative z-50">
                     {/* Desktop Links (Left) */}
                     <div className="hidden md:flex gap-8">
                         <Link href="/" className={`text-lg font-medium transition-colors ${location === '/' ? 'text-primary' : 'text-navy hover:text-primary'}`}>Home</Link>
