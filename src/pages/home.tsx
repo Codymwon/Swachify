@@ -289,7 +289,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-end w-full px-2 md:px-12 -mt-16 md:-mt-44 relative z-10 pointer-events-none">
+      <div className="flex justify-between items-end w-full px-2 md:px-12 -mt-10 md:-mt-44 relative z-10 pointer-events-none">
         <motion.div
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
