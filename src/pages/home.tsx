@@ -225,7 +225,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="w-5/12 md:w-1/3"
         >
-          <img src={maleMascot} alt="Cleaner" className="w-full max-w-[140px] md:max-w-[350px] mr-auto drop-shadow-2xl" />
+          <img src={maleMascot} alt="Cleaner" width={350} height={350} className="w-full max-w-[140px] md:max-w-[350px] mr-auto drop-shadow-2xl h-auto" />
         </motion.div>
 
         <motion.div
@@ -234,7 +234,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="w-5/12 md:w-1/3"
         >
-          <img src={femaleMascot} alt="Cleaner" className="w-full max-w-[140px] md:max-w-[350px] ml-auto drop-shadow-2xl" />
+          <img src={femaleMascot} alt="Cleaner" width={350} height={350} className="w-full max-w-[140px] md:max-w-[350px] ml-auto drop-shadow-2xl h-auto" />
         </motion.div>
       </div>
     </section>
