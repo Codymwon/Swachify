@@ -39,6 +39,7 @@ const Contact = () => {
         try {
             await addDoc(collection(db, "contacts"), {
                 ...formData,
+                handled: false,
                 createdAt: serverTimestamp()
             });
 
