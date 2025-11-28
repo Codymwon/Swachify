@@ -468,11 +468,11 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section id="why-us" className="py-20 bg-navy relative border-t border-white/10 will-change-transform transform-gpu">
+    <section id="why-us" className="py-20 bg-gradient-to-b from-white to-blue-50/30 relative will-change-transform transform-gpu">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Why Choose Swachify?</h2>
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">We don't just clean; we care for your home.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-navy">Why Choose <span className="text-primary italic">Swachify </span>?</h2>
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">We don't just clean, we care for your home.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -524,7 +524,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-gradient-to-b from-white to-blue-50/30 overflow-hidden relative">
+    <section id="how-it-works" className="py-24 bg-white overflow-hidden relative">
       {/* Decorative background elements */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-destructive/5 rounded-full blur-3xl" />
@@ -637,7 +637,7 @@ const HowItWorks = () => {
 
 const PricingTeaser = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-b from-blue-50/30 to-white">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-end mb-12">
           <div>
@@ -681,31 +681,26 @@ const PricingTeaser = () => {
   );
 };
 
-const AreasWeServe = () => {
-  return (
-    <section className="py-20 bg-navy will-change-transform transform-gpu">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
-          Areas We <span className="text-primary">Serve</span>
-        </h2>
-
-        <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-          {LOCATIONS.map((loc, i) => (
-            <div key={i} className="bg-white rounded-full px-6 py-3 flex items-center gap-2 shadow-lg hover:scale-105 transition-transform cursor-default">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span className="text-navy font-bold text-sm">{loc}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const FinalCTA = () => {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-b from-blue-50/30 to-white relative overflow-hidden">
       <div className="container mx-auto px-4 text-center relative z-10">
+        {/* Areas We Serve - Integrated */}
+        <div className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-bold text-navy mb-8">
+            Serving Across <span className="text-primary">Kerala</span>
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {LOCATIONS.map((loc, i) => (
+              <div key={i} className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-full px-5 py-2 flex items-center gap-2 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 border border-blue-200">
+                <MapPin className="w-4 h-4 text-primary" />
+                <span className="text-navy font-semibold text-sm">{loc}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Main CTA */}
         <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6">Ready to Swachify Your Space?</h2>
         <p className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto">
           Join thousands of happy customers and experience the joy of a truly clean home.
@@ -805,7 +800,6 @@ export default function Home() {
       <ServicesPreview />
       <HowItWorks />
       <PricingTeaser />
-      <AreasWeServe />
       <WhyChooseUs />
       <FinalCTA />
       <Footer />
