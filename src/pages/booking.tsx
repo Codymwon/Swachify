@@ -137,7 +137,7 @@ export default function Booking() {
         <div className="min-h-screen bg-gradient-to-b from-blue-50/30 to-white">
             <Navbar />
 
-            <div className="container mx-auto px-4 py-24 md:py-32">
+            <div className="container mx-auto px-4 py-24 md:py-42">
                 {/* Hero Section */}
                 <motion.div
                     className="text-center mb-12"
@@ -157,28 +157,28 @@ export default function Booking() {
                 <div className="max-w-3xl mx-auto mb-12">
                     <div className="flex items-center justify-between">
                         {[1, 2, 3, 4].map((step) => (
-                            <div key={step} className="flex items-center flex-1">
-                                <div className="flex flex-col items-center flex-1">
+                            <div key={step} className={`flex items-center ${step < 4 ? "flex-1" : ""}`}>
+                                <div className="flex flex-col items-center relative z-10">
                                     <div
                                         className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all ${step < currentStep
-                                                ? "bg-primary text-white"
-                                                : step === currentStep
-                                                    ? "bg-primary text-white ring-4 ring-primary/20"
-                                                    : "bg-gray-200 text-gray-500"
+                                            ? "bg-primary text-white"
+                                            : step === currentStep
+                                                ? "bg-primary text-white ring-4 ring-primary/20"
+                                                : "bg-gray-200 text-gray-500"
                                             }`}
                                     >
                                         {step < currentStep ? <Check className="w-5 h-5" /> : step}
                                     </div>
-                                    <span className="text-xs mt-2 text-gray-600 hidden md:block">
-                                        {step === 1 && "Service"}
-                                        {step === 2 && "Schedule"}
-                                        {step === 3 && "Location"}
-                                        {step === 4 && "Contact"}
+                                    <span className="absolute top-12 text-xs font-medium text-gray-600 whitespace-nowrap hidden md:block w-32 text-center">
+                                        {step === 1 && "Service Selection"}
+                                        {step === 2 && "Date & Time"}
+                                        {step === 3 && "Location Details"}
+                                        {step === 4 && "Contact Info"}
                                     </span>
                                 </div>
                                 {step < 4 && (
                                     <div
-                                        className={`h-1 flex-1 mx-2 transition-all ${step < currentStep ? "bg-primary" : "bg-gray-200"
+                                        className={`h-1 flex-1 mx-4 rounded-full transition-all ${step < currentStep ? "bg-primary" : "bg-gray-200"
                                             }`}
                                     />
                                 )}
@@ -221,8 +221,8 @@ export default function Booking() {
                                                                 updateFormData("serviceSize", ""); // Reset size when category changes
                                                             }}
                                                             className={`p-6 rounded-xl border-2 transition-all hover:scale-105 ${formData.serviceCategory === category.id
-                                                                    ? "border-primary bg-blue-50"
-                                                                    : "border-gray-200 hover:border-primary/50"
+                                                                ? "border-primary bg-blue-50"
+                                                                : "border-gray-200 hover:border-primary/50"
                                                                 }`}
                                                         >
                                                             <Icon className={`w-8 h-8 mx-auto mb-3 ${formData.serviceCategory === category.id ? "text-primary" : "text-gray-400"
@@ -253,8 +253,8 @@ export default function Booking() {
                                                         <div
                                                             key={size.id}
                                                             className={`flex items-center space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.serviceSize === size.id
-                                                                    ? "border-primary bg-blue-50"
-                                                                    : "border-gray-200 hover:border-primary/50"
+                                                                ? "border-primary bg-blue-50"
+                                                                : "border-gray-200 hover:border-primary/50"
                                                                 }`}
                                                             onClick={() => updateFormData("serviceSize", size.id)}
                                                         >
@@ -312,8 +312,8 @@ export default function Booking() {
                                                         key={slot}
                                                         onClick={() => updateFormData("timeSlot", slot)}
                                                         className={`p-4 rounded-lg border-2 transition-all hover:scale-105 ${formData.timeSlot === slot
-                                                                ? "border-primary bg-blue-50 text-primary font-semibold"
-                                                                : "border-gray-200 hover:border-primary/50"
+                                                            ? "border-primary bg-blue-50 text-primary font-semibold"
+                                                            : "border-gray-200 hover:border-primary/50"
                                                             }`}
                                                     >
                                                         {slot}
