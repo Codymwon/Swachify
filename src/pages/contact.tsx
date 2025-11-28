@@ -37,22 +37,9 @@ const Contact = () => {
         setLoading(true);
 
         try {
-            const docRef = await addDoc(collection(db, "contacts"), {
+            await addDoc(collection(db, "contacts"), {
                 ...formData,
                 createdAt: serverTimestamp()
-            });
-
-            // Notify Cloudflare Worker about the new contact
-            await fetch("https://swachify-notify.xyz.workers.dev", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-notify-key": "adkj23h9r8fy923fioj223"
-                },
-                body: JSON.stringify({
-                    docId: docRef.id,
-                    collection: "contacts"
-                })
             });
 
             toast({
