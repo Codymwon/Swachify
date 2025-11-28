@@ -16,8 +16,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import maleMascot from "@assets/generated_images/friendly_male_cleaner_mascot_cartoon.png";
-import femaleMascot from "@assets/generated_images/friendly_female_cleaner_mascot_cartoon.png";
+import maleMascot from "@assets/generated_images/friendly_male_cleaner_mascot_cartoon.webp";
+import femaleMascot from "@assets/generated_images/friendly_female_cleaner_mascot_cartoon.webp";
 import groupMascot from "@assets/generated_images/cleaning_mascots_group_illustration.png";
 import swachifyLogo from "@assets/Swachify_logo.png";
 
