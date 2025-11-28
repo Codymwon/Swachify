@@ -187,7 +187,7 @@ const Navbar = () => {
 
 const Hero = () => {
   return (
-    <section className="relative pt-24 pb-0 md:pt-24 md:pb-0 overflow-hidden bg-white">
+    <section className="relative pt-24 pb-0 md:pt-20 md:pb-0 overflow-hidden bg-white">
       {/* Grid Background Pattern */}
       <div className="absolute inset-0 z-0 opacity-[0.03]"
         style={{ backgroundImage: 'linear-gradient(#000 2px, transparent 1px), linear-gradient(90deg, #000 2px, transparent 1px)', backgroundSize: '20px 20px' }}>
@@ -195,7 +195,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-20 ">
         <div className="text-center max-w-4xl mx-auto mb-8 md:mb-12 mt-4 md:mt-20 ">
-          <h1 className="text-4xl md:text-[75px] font-bold text-navy mb-2 md:mb-4 tracking-tight">
+          <h1 className="text-3xl md:text-[75px] font-bold text-navy mb-2 md:mb-4 tracking-tight">
             <motion.span
               className="text-primary italic relative inline-block"
               whileHover="hover"
@@ -277,13 +277,13 @@ const Hero = () => {
               SWACHIFY
             </motion.span> YOUR SPACE
           </h1>
-          <h2 className="text-lg md:text-[60px] font-bold text-navy/90 mb-6 md:mb-8">
+          <h2 className="text-1xl md:text-[60px] font-bold text-navy/90 mb-4 md:mb-8">
             LEAVE THE CLEANING TO US
           </h2>
-          <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 max-w-xl mx-auto">
+          <p className="text-sm md:text-lg text-gray-600 mb-4 md:mb-8 max-w-xl mx-auto">
             Experience our reliable and thorough cleaning services today.
           </p>
-          <Button className="bg-destructive hover:bg-destructive/90 text-white px-6 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95">
+          <Button className="bg-destructive hover:bg-destructive/90 text-white px-4 py-3 md:px-8 md:py-6 text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110 active:scale-95">
             Book Now
           </Button>
         </div>
@@ -317,24 +317,8 @@ const ServicesPreview = () => {
   const currentService = SERVICE_DATA[activeCategory];
 
   return (
-    <section id="services" className="py-20 bg-navy text-white relative overflow-hidden">
-      {/* Animated background elements */}
-      <motion.div
-        className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-0 left-0 w-96 h-96 bg-destructive/5 rounded-full blur-3xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.5, 0.3, 0.5]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <section id="services" className="py-20 bg-navy text-white relative overflow-hidden will-change-transform transform-gpu">
+
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -484,7 +468,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section id="why-us" className="py-20 bg-navy relative border-t border-white/10">
+    <section id="why-us" className="py-20 bg-navy relative border-t border-white/10 will-change-transform transform-gpu">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Why Choose Swachify?</h2>
@@ -699,7 +683,7 @@ const PricingTeaser = () => {
 
 const AreasWeServe = () => {
   return (
-    <section className="py-20 bg-navy">
+    <section className="py-20 bg-navy will-change-transform transform-gpu">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
           Areas We <span className="text-primary">Serve</span>
@@ -743,7 +727,7 @@ const FinalCTA = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-navy text-white pt-20 pb-10 border-t border-white/10">
+    <footer className="bg-navy text-white pt-20 pb-10 border-t border-white/10 will-change-transform transform-gpu">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div>
