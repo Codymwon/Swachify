@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { SERVICE_DATA, ServiceCategory } from "./home";
+import { SERVICE_DATA, ServiceCategory } from "@/data/services";
 
 const ServiceDetail = () => {
     const params = useParams();
@@ -30,7 +30,7 @@ const ServiceDetail = () => {
                 <div className="container mx-auto px-4 py-20 text-center">
                     <h1 className="text-4xl font-bold text-navy mb-4">Service Not Found</h1>
                     <p className="text-gray-600 mb-8">The service you're looking for doesn't exist.</p>
-                    <Button onClick={() => setLocation("/")} className="bg-primary hover:bg-primary/90">
+                    <Button onClick={() => setLocation("/#services")} className="bg-primary hover:bg-primary/90">
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         Back to Home
                     </Button>
@@ -53,7 +53,7 @@ const ServiceDetail = () => {
                         transition={{ duration: 0.6 }}
                     >
                         <Button
-                            onClick={() => setLocation("/")}
+                            onClick={() => setLocation("/#services")}
                             variant="ghost"
                             className="mb-6 text-navy hover:text-primary"
                         >
