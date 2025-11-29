@@ -189,7 +189,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             LEAVE THE CLEANING TO US
-          </motion.h2>
+          </motion.h2 >
           <motion.p
             className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 max-w-xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
@@ -233,7 +233,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-end w-full px-2 md:px-12 -mt-5 md:-mt-44 relative z-10 pointer-events-none">
+      <div className="flex justify-between items-end w-full px-2 md:px-12 -mt-5 md:-mt-52 relative z-10 pointer-events-none">
         <motion.div
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
