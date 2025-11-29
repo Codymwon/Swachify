@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "wouter";
-import swachifyLogo from "@assets/Swachify_logo.png";
+
+const swachifyLogo = "/images/Swachify_logo.png";
 
 const Footer = () => {
     return (

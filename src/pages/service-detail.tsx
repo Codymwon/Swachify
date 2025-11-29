@@ -89,15 +89,25 @@ const ServiceDetail = () => {
                                     className="flex-shrink-0 w-96"
                                 >
                                     <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-                                        {/* Image Placeholder */}
-                                        <div className="relative bg-gradient-to-br from-green-50 via-blue-50 to-gray-50 h-80 flex items-center justify-center">
-                                            <div className="text-center p-8">
-                                                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-white/80 flex items-center justify-center shadow-md">
-                                                    <CheckCircle2 className="w-12 h-12 text-green-600" />
+                                        {/* Image */}
+                                        <div className="relative bg-gradient-to-br from-green-50 via-blue-50 to-gray-50 h-80 overflow-hidden">
+                                            {service.images && service.images[item] ? (
+                                                <img
+                                                    src={service.images[item]}
+                                                    alt={item}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            ) : (
+                                                <div className="flex items-center justify-center h-full">
+                                                    <div className="text-center p-8">
+                                                        <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-white/80 flex items-center justify-center shadow-md">
+                                                            <CheckCircle2 className="w-12 h-12 text-green-600" />
+                                                        </div>
+                                                        <p className="text-gray-600 font-semibold text-lg">Service Image</p>
+                                                        <p className="text-gray-400 text-sm mt-2">Professional Photo</p>
+                                                    </div>
                                                 </div>
-                                                <p className="text-gray-600 font-semibold text-lg">Service Image</p>
-                                                <p className="text-gray-400 text-sm mt-2">Professional Photo</p>
-                                            </div>
+                                            )}
                                         </div>
 
                                         {/* Service Title Below Image */}

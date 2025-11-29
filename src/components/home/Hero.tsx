@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import maleMascot from "@assets/generated_images/friendly_male_cleaner_mascot_cartoon.webp";
-import femaleMascot from "@assets/generated_images/friendly_female_cleaner_mascot_cartoon.webp";
+
+const maleMascot = "/images/friendly_male_cleaner_mascot_cartoon.webp";
+const femaleMascot = "/images/friendly_female_cleaner_mascot_cartoon.webp";
 
 const Hero = () => {
     return (

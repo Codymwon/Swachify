@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "wouter";
-import swachifyLogo from "@assets/Swachify_logo.png";
+
+const swachifyLogo = "/images/Swachify_logo.png";
 
 const Navbar = () => {
     const [isVisible, setIsVisible] = useState(true);
