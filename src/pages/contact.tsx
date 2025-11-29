@@ -116,7 +116,13 @@ const Contact = () => {
                             </div>
 
                             <div className="space-y-6">
-                                <div className="flex items-start gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                                <motion.div
+                                    className="flex items-start gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                    whileHover={{ y: -5 }}
+                                >
                                     <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
                                         <Phone className="w-6 h-6 text-primary" />
                                     </div>
@@ -125,9 +131,15 @@ const Contact = () => {
                                         <p className="text-gray-600 mb-1">Mon-Sun from 8am to 8pm</p>
                                         <a href="tel:+911234567890" className="text-primary font-semibold hover:underline">+91 123 456 7890</a>
                                     </div>
-                                </div>
+                                </motion.div>
 
-                                <div className="flex items-start gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                                <motion.div
+                                    className="flex items-start gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    whileHover={{ y: -5 }}
+                                >
                                     <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
                                         <Mail className="w-6 h-6 text-primary" />
                                     </div>
@@ -136,9 +148,15 @@ const Contact = () => {
                                         <p className="text-gray-600 mb-1">Our friendly team is here to help.</p>
                                         <a href="mailto:hello@swachify.com" className="text-primary font-semibold hover:underline">hello@swachify.com</a>
                                     </div>
-                                </div>
+                                </motion.div>
 
-                                <div className="flex items-start gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                                <motion.div
+                                    className="flex items-start gap-4 p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 }}
+                                    whileHover={{ y: -5 }}
+                                >
                                     <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
                                         <MapPin className="w-6 h-6 text-primary" />
                                     </div>
@@ -149,7 +167,7 @@ const Contact = () => {
                                             Kannur, Kerala, India 670141
                                         </p>
                                     </div>
-                                </div>
+                                </motion.div>
                             </div>
                         </motion.div>
 
@@ -217,7 +235,12 @@ const Contact = () => {
             <section className="h-96 bg-gray-200 w-full relative">
                 <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium">
                     <div className="text-center">
-                        <MapPin className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                        <motion.div
+                            animate={{ y: [0, -10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                            <MapPin className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                        </motion.div>
                         <p>Map Integration Placeholder</p>
                     </div>
                 </div>

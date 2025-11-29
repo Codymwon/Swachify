@@ -215,6 +215,21 @@ const Hero = () => {
               Contact Us
             </Button>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            className="mt-6"
+          >
+            <a
+              href="/about"
+              className="inline-flex items-center gap-2 text-navy font-semibold hover:text-primary transition-colors group text-lg"
+            >
+              Learn more about us
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </motion.div>
         </div>
       </div>
 
@@ -304,7 +319,7 @@ const ServicesPreview = () => {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <Card className="bg-white text-navy border-none shadow-2xl rounded-3xl overflow-hidden hover:shadow-3xl transition-shadow duration-300">
+                <Card className="bg-white text-navy border-none shadow-2xl rounded-3xl overflow-hidden hover:shadow-3xl transition-all duration-500">
                   <CardContent className="p-0">
                     <div className="grid md:grid-cols-2 gap-0">
                       {/* Left side - Description */}
@@ -344,15 +359,15 @@ const ServicesPreview = () => {
                           {currentService.services.map((item, i) => (
                             <motion.li
                               key={i}
-                              className="flex items-center gap-3 text-sm font-medium text-navy"
+                              className="flex items-center gap-3 text-sm font-medium text-navy cursor-default"
                               initial={{ opacity: 0, x: 20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.2 + i * 0.1 }}
-                              whileHover={{ x: 5 }}
+                              whileHover={{ x: 10, color: "var(--primary)" }}
                             >
                               <motion.span
                                 className="w-3 h-3 rounded-full bg-primary flex-shrink-0"
-                                whileHover={{ scale: 1.3 }}
+                                whileHover={{ scale: 1.5 }}
                                 transition={{ type: "spring", stiffness: 400 }}
                               />
                               {item}
@@ -413,11 +428,15 @@ const WhyChooseUs = () => {
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full bg-white border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Card className="h-full bg-white border-none shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
                 <CardContent className="p-8 flex flex-col items-center text-center h-full">
-                  <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                  <motion.div
+                    className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
                     {feature.icon}
-                  </div>
+                  </motion.div>
                   <h3 className="text-xl font-bold text-primary mb-3">{feature.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
                 </CardContent>
@@ -607,16 +626,16 @@ const PricingTeaser = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
             >
-              <Card className="border-none shadow-sm hover:shadow-md transition-all h-full">
+              <Card className="border-none shadow-sm hover:shadow-xl transition-all h-full hover:-translate-y-2 duration-300 cursor-pointer group">
                 <CardContent className="p-6">
-                  <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                    <Star className="w-5 h-5 text-primary" />
+                  <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                    <Star className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
                   </div>
                   <h3 className="text-xl font-bold text-primary mb-1">{plan.title}</h3>
                   <p className="text-2xl font-bold text-navy mb-3">{plan.price}</p>
                   <p className="text-gray-500 text-sm mb-4">{plan.desc}</p>
-                  <Button variant="link" className="text-primary p-0 h-auto font-semibold">
-                    Check details <ArrowRight className="w-4 h-4 ml-1" />
+                  <Button variant="link" className="text-primary p-0 h-auto font-semibold group-hover:underline">
+                    Check details <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
               </Card>
@@ -687,7 +706,17 @@ const FinalCTA = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Button onClick={() => window.location.href = '/booking'} size="lg" className="bg-destructive hover:bg-destructive/90 text-white px-8 py-6 text-lg rounded-full shadow-xl hover:shadow-2xl transition-all hover:scale-105 w-full sm:w-auto sm:min-w-[200px]">
+            <Button
+              onClick={() => window.location.href = '/booking'}
+              size="lg"
+              className="bg-destructive hover:bg-destructive/90 text-white px-8 py-6 text-lg rounded-full shadow-xl hover:shadow-2xl transition-all hover:scale-105 w-full sm:w-auto sm:min-w-[200px] relative overflow-hidden"
+            >
+              <motion.div
+                className="absolute inset-0 bg-white/20"
+                initial={{ x: '-100%' }}
+                animate={{ x: '100%' }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "linear", repeatDelay: 1 }}
+              />
               Book Your Cleaning
             </Button>
             <Button size="lg" variant="outline" className="border-2 border-navy text-navy hover:bg-navy hover:text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 w-full sm:w-auto sm:min-w-[200px]">
@@ -880,6 +909,19 @@ const WhatsAppButton = () => {
 };
 
 export default function Home() {
+  useEffect(() => {
+    // Handle hash scrolling on mount (for cross-page navigation)
+    if (window.location.hash) {
+      const id = window.location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100); // Small delay to ensure rendering
+      }
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white font-sans">
       <Navbar />

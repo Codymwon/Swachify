@@ -200,10 +200,14 @@ export default function Booking() {
                                     </span>
                                 </div>
                                 {step < 4 && (
-                                    <div
-                                        className={`h-1 flex-1 mx-4 rounded-full transition-all ${step < currentStep ? "bg-primary" : "bg-gray-200"
-                                            }`}
-                                    />
+                                    <div className="h-1 flex-1 mx-4 bg-gray-200 rounded-full overflow-hidden">
+                                        <motion.div
+                                            className="h-full bg-primary"
+                                            initial={{ width: "0%" }}
+                                            animate={{ width: step < currentStep ? "100%" : "0%" }}
+                                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                                        />
+                                    </div>
                                 )}
                             </div>
                         ))}
@@ -237,21 +241,23 @@ export default function Booking() {
                                                 {SERVICE_CATEGORIES.map((category) => {
                                                     const Icon = category.icon;
                                                     return (
-                                                        <button
+                                                        <motion.button
                                                             key={category.id}
                                                             onClick={() => {
                                                                 updateFormData("serviceCategory", category.id);
                                                                 updateFormData("serviceSize", ""); // Reset size when category changes
                                                             }}
-                                                            className={`p-6 rounded-xl border-2 transition-all hover:scale-105 ${formData.serviceCategory === category.id
-                                                                ? "border-primary bg-blue-50"
-                                                                : "border-gray-200 hover:border-primary/50"
+                                                            className={`p-6 rounded-xl border-2 transition-all ${formData.serviceCategory === category.id
+                                                                ? "border-primary bg-blue-50 shadow-md"
+                                                                : "border-gray-200 hover:border-primary/50 hover:bg-gray-50"
                                                                 }`}
+                                                            whileHover={{ scale: 1.03, y: -2 }}
+                                                            whileTap={{ scale: 0.98 }}
                                                         >
                                                             <Icon className={`w-8 h-8 mx-auto mb-3 ${formData.serviceCategory === category.id ? "text-primary" : "text-gray-400"
                                                                 }`} />
                                                             <p className="font-semibold text-navy text-sm">{category.name}</p>
-                                                        </button>
+                                                        </motion.button>
                                                     );
                                                 })}
                                             </div>
@@ -273,20 +279,22 @@ export default function Booking() {
                                                     className="space-y-3"
                                                 >
                                                     {(formData.serviceCategory === "residential" ? RESIDENTIAL_SIZES : COMMERCIAL_SIZES).map((size) => (
-                                                        <div
+                                                        <motion.div
                                                             key={size.id}
                                                             className={`flex items-center space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${formData.serviceSize === size.id
-                                                                ? "border-primary bg-blue-50"
-                                                                : "border-gray-200 hover:border-primary/50"
+                                                                ? "border-primary bg-blue-50 shadow-sm"
+                                                                : "border-gray-200 hover:border-primary/50 hover:bg-gray-50"
                                                                 }`}
                                                             onClick={() => updateFormData("serviceSize", size.id)}
+                                                            whileHover={{ scale: 1.01, x: 2 }}
+                                                            whileTap={{ scale: 0.99 }}
                                                         >
                                                             <RadioGroupItem value={size.id} id={size.id} />
                                                             <Label htmlFor={size.id} className="flex-1 cursor-pointer">
                                                                 <p className="font-semibold text-navy">{size.name}</p>
                                                                 <p className="text-sm text-gray-500">{size.description}</p>
                                                             </Label>
-                                                        </div>
+                                                        </motion.div>
                                                     ))}
                                                 </RadioGroup>
                                             </motion.div>
@@ -331,16 +339,18 @@ export default function Booking() {
                                             <Label className="text-base font-semibold mb-3 block">Preferred Time Slot</Label>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                                 {TIME_SLOTS.map((slot) => (
-                                                    <button
+                                                    <motion.button
                                                         key={slot}
                                                         onClick={() => updateFormData("timeSlot", slot)}
-                                                        className={`p-4 rounded-lg border-2 transition-all hover:scale-105 ${formData.timeSlot === slot
-                                                            ? "border-primary bg-blue-50 text-primary font-semibold"
-                                                            : "border-gray-200 hover:border-primary/50"
+                                                        className={`p-4 rounded-lg border-2 transition-all ${formData.timeSlot === slot
+                                                            ? "border-primary bg-blue-50 text-primary font-semibold shadow-sm"
+                                                            : "border-gray-200 hover:border-primary/50 hover:bg-gray-50"
                                                             }`}
+                                                        whileHover={{ scale: 1.02, y: -2 }}
+                                                        whileTap={{ scale: 0.98 }}
                                                     >
                                                         {slot}
-                                                    </button>
+                                                    </motion.button>
                                                 ))}
                                             </div>
                                         </div>
