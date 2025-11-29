@@ -6,10 +6,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SERVICE_DATA, ServiceCategory } from "@/data/services";
+import { useState } from "react";
 
 const ServiceDetail = () => {
     const params = useParams();
     const [, setLocation] = useLocation();
+    const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
 
     // Convert URL parameter to ServiceCategory
     const categoryParam = params.category || "";
@@ -89,14 +91,34 @@ const ServiceDetail = () => {
                                     className="flex-shrink-0 w-96"
                                 >
                                     <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-                                        {/* Image */}
+                                        {/* Image with Progressive Loading */}
                                         <div className="relative bg-gradient-to-br from-green-50 via-blue-50 to-gray-50 h-80 overflow-hidden">
                                             {service.images && service.images[item] ? (
-                                                <img
-                                                    src={service.images[item]}
-                                                    alt={item}
-                                                    className="w-full h-full object-cover"
-                                                />
+                                                <>
+                                                    {/* Skeleton/Placeholder - shown while loading */}
+                                                    {!loadedImages[index] && (
+                                                        <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 animate-pulse">
+                                                            <div className="flex items-center justify-center h-full">
+                                                                <div className="text-center">
+                                                                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-white/50"></div>
+                                                                    <div className="h-4 w-32 mx-auto bg-white/50 rounded"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )}
+
+                                                    {/* Actual Image */}
+                                                    <img
+                                                        src={service.images[item]}
+                                                        alt={item}
+                                                        className={`w-full h-full object-cover transition-all duration-700 ease-out ${loadedImages[index]
+                                                                ? 'opacity-100 blur-0 scale-100'
+                                                                : 'opacity-0 blur-sm scale-105'
+                                                            }`}
+                                                        onLoad={() => setLoadedImages(prev => ({ ...prev, [index]: true }))}
+                                                        loading="lazy"
+                                                    />
+                                                </>
                                             ) : (
                                                 <div className="flex items-center justify-center h-full">
                                                     <div className="text-center p-8">
