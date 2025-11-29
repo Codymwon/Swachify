@@ -2,3 +2,4 @@
 /script
 /worker/node_modules
 .env
+/dist

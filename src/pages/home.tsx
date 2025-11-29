@@ -2,6 +2,7 @@ import { useEffect, Suspense, lazy } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/home/Hero";
 import ServicesPreview from "@/components/home/ServicesPreview";
+import Footer from "@/components/Footer";
 
 // Lazy load other components
 const HowItWorks = lazy(() => import("@/components/home/HowItWorks"));
@@ -10,7 +11,6 @@ const WhyChooseUs = lazy(() => import("@/components/home/WhyChooseUs"));
 const FinalCTA = lazy(() => import("@/components/home/FinalCTA"));
 const FAQ = lazy(() => import("@/components/home/FAQ"));
 const WhatsAppButton = lazy(() => import("@/components/home/WhatsAppButton"));
-const Footer = lazy(() => import("@/components/Footer"));
 
 export default function Home() {
   useEffect(() => {
@@ -37,9 +37,9 @@ export default function Home() {
         <WhyChooseUs />
         <FinalCTA />
         <FAQ />
-        <Footer />
         <WhatsAppButton />
       </Suspense>
+      <Footer />
     </div>
   );
 }
