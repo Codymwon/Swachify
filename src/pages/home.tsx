@@ -15,7 +15,7 @@ import femaleMascot from "@assets/generated_images/friendly_female_cleaner_masco
 
 // --- Static Data (Moved outside components for performance) ---
 
-type ServiceCategory = "Residential" | "Commercial" | "Car Wash" | "Garden";
+export type ServiceCategory = "Residential" | "Commercial" | "Car Wash" | "Garden";
 
 const SERVICE_CATEGORIES: ServiceCategory[] = ["Residential", "Commercial", "Car Wash", "Garden"];
 
@@ -25,7 +25,7 @@ type ServiceData = Record<ServiceCategory, {
   services: string[];
 }>;
 
-const SERVICE_DATA: ServiceData = {
+export const SERVICE_DATA: ServiceData = {
   "Residential": {
     title: "Residential Cleaning",
     description: "Keep your home spotless with tailored cleaning options—from regular upkeep to deep cleaning. We cover kitchens, bathrooms, bedrooms, living areas, and more, ensuring every corner shines with care and precision.",
@@ -341,7 +341,7 @@ const ServicesPreview = () => {
                           {currentService.description}
                         </motion.p>
                         <motion.a
-                          href="#"
+                          href={`/services/${activeCategory.replace(/\s+/g, '').charAt(0).toLowerCase() + activeCategory.replace(/\s+/g, '').slice(1) + (activeCategory !== 'Car Wash' ? 'Cleaning' : '')}`}
                           className="text-primary font-semibold hover:underline underline-offset-4 inline-flex items-center gap-2 group"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}

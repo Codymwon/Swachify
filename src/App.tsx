@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Booking from "@/pages/booking";
+import ServiceDetail from "@/pages/service-detail";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function Router() {
@@ -17,6 +18,7 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/booking" component={Booking} />
+      <Route path="/services/:category" component={ServiceDetail} />
       <Route component={NotFound} />
     </Switch>
   );
