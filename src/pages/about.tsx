@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Shield, Users, Heart, Target, Sparkles, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import groupMascot from "@assets/generated_images/cleaning_mascots_group_illustration.png";
+import groupMascot from "/images/cleaning_mascots_group_illustration.webp";
 import { Button } from "@/components/ui/button";
 
 const About = () => {
